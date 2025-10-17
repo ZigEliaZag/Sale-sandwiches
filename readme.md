@@ -9,3 +9,9 @@ This Python program will collect the company's market day sales data, calculate 
 The goal is to save the company staff time by automating a repetitive task, and help reduce the surplus by better predicting sales for future markets.
 
 To achieve this, I will wire up my python program to interact with Google Sheet, so that i can push and pull data to and from the spreadsheet. 
+
+* Setting up my virtual inveroment.
+* I will be working working with 3.12 Python version 
+* I'm going install in some models,(check "requirement.txt" file above
+* I'm going to set up a Google Sheet with data to work with
+   * To archeive this, I must have a Google acount 
