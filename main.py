@@ -61,35 +61,28 @@ def validate_data(values):
     
     return True
 
-def update_sales_worksheet(data):
+def update_worksheet(data, worksheet):
     """
-    Update sales worksheet, add new row with the list data provided
+    Recieve a list of integers to be inserted into a worksheet.
+    Update the relevant worksheet with the data provided 
     """
-    print("Updating sales worksheet...\n")
-    sales_worksheet = sheet.worksheet("sales")
-    sales_worksheet.append_row(data)
-    print("Sales worksheet updated successfully.\n")
+    print(f"updating {worksheet} worksheet...\n")
+    worksheet_to_update = sheet.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully\n")
 
-def update_surplus_worksheet(data):
-    """ 
-    Update surplus worksheet , add new row with the surplus from saled data
-    """
-    print("Updating surplus worksheet...\n")
-    surplus_worksheet = sheet.worksheet("surplus")
-    surplus_worksheet.append_row(data)
-    print("Surplus worksheet updated successfully.\n")
-
-def update_stock_worksheet(data):
-    """ 
-    Update stock worksheet, add new row with the stock from saled data
-    """
-    stock_worksheet = sheet.worksheet("stock")
-    stock_worksheet.append_row(data)
-    print("Stock worksheet updated successfuully.\n")
+#def update_stock_worksheet(data):
+ #   """ 
+  #  Update stock worksheet, add new row with the stock from saled data
+   # """
+    #stock_worksheet = sheet.worksheet("stock")
+    #stock_worksheet.append_row(data)
+    #print("Stock worksheet updated successfuully.\n")
 
 def calculate_surplus_data(sale_row):
     """ 
     Compare sales with stock and calculate the surplus for each item type.
+
     The surplas is defined as the sales figure subtracted from the stock:
     - positive surplus indecates waste.
     - Negative surplus indecates extra made when stock was sold out.
@@ -113,11 +106,10 @@ def main():
     """
     data = get_sales_date()
     sales_data = [int(num) for num in data] #convert the value to integer
-    update_sales_worksheet(sales_data)
+    update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
-    print(new_surplus_data)
-    update_surplus_worksheet(new_surplus_data)
-    update_stock_worksheet()
+    update_worksheet(new_surplus_data, "surplus")
+
 
 
 
