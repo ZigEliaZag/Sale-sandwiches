@@ -41,8 +41,8 @@ def get_sales_date():
             print("Data is valid!")
             break
 
-    return sales_data 
-                   
+    return sales_data
+         
 def validate_data(values):
     """
     Inside the try, converts all string values into integers.
@@ -70,6 +70,23 @@ def update_sales_worksheet(data):
     sales_worksheet.append_row(data)
     print("Sales worksheet updated successfully.\n")
 
+def update_surplus_worksheet(data):
+    """ 
+    Update surplus worksheet , add new row with the surplus from saled data
+    """
+    print("Updating surplus worksheet...\n")
+    surplus_worksheet = sheet.worksheet("surplus")
+    surplus_worksheet.append_row(data)
+    print("Surplus worksheet updated successfully.\n")
+
+def update_stock_worksheet(data):
+    """ 
+    Update stock worksheet, add new row with the stock from saled data
+    """
+    stock_worksheet = sheet.worksheet("stock")
+    stock_worksheet.append_row(data)
+    print("Stock worksheet updated successfuully.\n")
+
 def calculate_surplus_data(sale_row):
     """ 
     Compare sales with stock and calculate the surplus for each item type.
@@ -82,11 +99,13 @@ def calculate_surplus_data(sale_row):
     stock_row = stock[-1] # output one row from spreadsheet "stock row"
     
     surplus_data = []
-    for stock, sales in zip(stock_row , sale_row):
+    for stock, sales in zip(stock_row , sale_row): # the zip() iterate two lists at the same time
         surplus = int(stock) - sales 
         surplus_data.append(surplus)
     
     return surplus_data
+
+
 
 def main():
     """
@@ -97,6 +116,11 @@ def main():
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_data(sales_data)
     print(new_surplus_data)
+    update_surplus_worksheet(new_surplus_data)
+    update_stock_worksheet()
+
+
+
 
 print("Welcome to Sale Sandwiches Data Automation")
 main()
