@@ -71,14 +71,6 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
 
-#def update_stock_worksheet(data):
- #   """ 
-  #  Update stock worksheet, add new row with the stock from saled data
-   # """
-    #stock_worksheet = sheet.worksheet("stock")
-    #stock_worksheet.append_row(data)
-    #print("Stock worksheet updated successfuully.\n")
-
 def calculate_surplus_data(sale_row):
     """ 
     Compare sales with stock and calculate the surplus for each item type.
@@ -98,7 +90,19 @@ def calculate_surplus_data(sale_row):
     
     return surplus_data
 
-
+def get_last_5_entries_sales():
+    """ 
+    Colletcs collums of data from sales worksheet, collecting 
+    the last 5 entries for each sandwich and returns the data 
+    as a list of lists.
+    """
+    sales = sheet.worksheet("sales")
+    columns = []
+    for  ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+        
+    return columns
 
 def main():
     """
@@ -115,4 +119,5 @@ def main():
 
 
 print("Welcome to Sale Sandwiches Data Automation")
-main()
+# main()
+get_last_5_entries_sales()
